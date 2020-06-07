@@ -51,8 +51,6 @@ public class Program extends Application {
             if (!drawn_nodes.contains(n)) {
                 // draw node
                 CoordPair real = project(n.get_pos(), angle);
-                // System.out.print("drawing node at: ");
-                // System.out.println(real);
                 gc.strokeOval(real.x, real.y, node_size, node_size);
             }
             if (a == null) {
@@ -202,25 +200,27 @@ public class Program extends Application {
     public void start(Stage primaryStage) {
         // Make Nodes
         // Nodes for cube
-        // Node a = new Node(100, 100, 100);
-        // Node b = new Node(100, 100, 200);
-        // Node c = new Node(100, 200, 100);
-        // Node d = new Node(100, 200, 200);
-        
-        // Node i = new Node(200, 100, 100);
-        // Node j = new Node(200, 100, 200);
-        // Node k = new Node(200, 200, 100);
-        // Node l = new Node(200, 200, 200);
-
         Node a = new Node(-50, -50, -50);
         Node b = new Node(-50, -50, 50);
         Node c = new Node(-50, 50, -50);
         Node d = new Node(-50, 50, 50);
-        
         Node i = new Node(50, -50, -50);
         Node j = new Node(50, -50, 50);
         Node k = new Node(50, 50, -50);
         Node l = new Node(50, 50, 50);
+        // Make connections
+        a.add_connection(b);
+        a.add_connection(c);
+        a.add_connection(i);
+        l.add_connection(d);
+        l.add_connection(k);
+        l.add_connection(j);
+        j.add_connection(b);
+        j.add_connection(i);
+        c.add_connection(d);
+        c.add_connection(k);
+        k.add_connection(i);
+        d.add_connection(b);
 
 
         // Nodes for triangle pyramid thing
@@ -234,49 +234,6 @@ public class Program extends Application {
         w.add_connection(v);
         w.add_connection(u);
         v.add_connection(u);
-
-        // Connect cube nodes
-        ArrayList<Node> cube_nodes = new ArrayList<>();
-        cube_nodes.add(a);
-        cube_nodes.add(b);
-        cube_nodes.add(c);
-        cube_nodes.add(d);
-        cube_nodes.add(i);
-        cube_nodes.add(j);
-        cube_nodes.add(k);
-        cube_nodes.add(l);
-        
-        // Node x = new Node(150, 50, 150);
-        // Node y = new Node(150, 250, 150);
-        // Node x = new Node(150, 125, 150);
-        // Node y = new Node(150, 175, 150);
-        // for (Node n: cube_nodes) {
-        //     x.add_connection(n);
-        //     y.add_connection(n);
-        // }
-        // cube_nodes.add(x);
-        // cube_nodes.add(y);
-
-
-
-        // Make connections
-        a.add_connection(b);
-        a.add_connection(c);
-        a.add_connection(i);
-        
-        l.add_connection(d);
-        l.add_connection(k);
-        l.add_connection(j);
-        
-        j.add_connection(b);
-        j.add_connection(i);
-        
-        c.add_connection(d);
-        c.add_connection(k);
-
-        k.add_connection(i);
-
-        d.add_connection(b);
 
 
         // setup screen
@@ -294,13 +251,13 @@ public class Program extends Application {
                 /** ===================================================================== **/
                 
                 // Main drawing loop
-                // System.out.printf("Drawing with angle: %d\n", angle);
-                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                depth_draw(gc, a, angle);
-                depth_draw(gc, z, angle);
+                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());  // clear screen
+                depth_draw(gc, a, angle);   // draw cube
+                depth_draw(gc, z, angle);   // draw pyramid
 
-                object_rotate(z, 1, 1, 1); // rotate pyramid
                 object_rotate(a, 0, 5, 1); // rotate cube
+                object_rotate(z, 1, 1, 1); // rotate pyramid
+                
 
                 
                 // Change angle for sweeping effect
