@@ -187,8 +187,8 @@ public class Program extends Application {
 
     /** ============================================= **/
 
-    final static int screen_width = 1500;
-    final static int screen_height = 1200;
+    final static int screen_width = 800;
+    final static int screen_height = 600;
     final static int node_size = 0;
     
     final int max_angle = 1000;
