@@ -17,6 +17,10 @@ public class CoordPair {
         this(x, y, 0);
     }
 
+    public CoordPair(double x, double y) {
+        this(x, y, 0);
+    }
+
     public CoordPair() {
         this(0, 0, 0);
     }

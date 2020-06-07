@@ -31,7 +31,7 @@ public class Program extends Application {
         double x = (((double)point.x) * multiplier) + (screen_width / 2);
         double y = (((double)point.y) * multiplier) + (screen_height / 2);
         
-        CoordPair out = new CoordPair((int)x, (int)y);
+        CoordPair out = new CoordPair(x, y);
         // System.out.printf("%s => %s\n", point, out);
 
         return out;
@@ -51,7 +51,8 @@ public class Program extends Application {
             if (!drawn_nodes.contains(n)) {
                 // draw node
                 CoordPair real = project(n.get_pos(), angle);
-                gc.strokeOval(real.x, real.y, node_size, node_size);
+                // gc.strokeOval(real.x, real.y, node_size, node_size);
+                gc.fillOval(real.x, real.y, node_size, node_size);
             }
             if (a == null) {
                 a = n;
@@ -187,7 +188,7 @@ public class Program extends Application {
 
     final static int screen_width = 800;
     final static int screen_height = 600;
-    final static int node_size = 0;
+    final static int node_size = 8;
     
     final int max_angle = 1000;
     final int min_angle = 300;
