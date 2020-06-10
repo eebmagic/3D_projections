@@ -26,6 +26,19 @@ public class CoordPair {
     }
 
     public String toString() {
-        return String.format("(%d, %d, %d)", (int)x, (int)y, (int)z);
+        // return String.format("(%d, %d, %d)", (int)x, (int)y, (int)z);
+        return String.format("(%f, %f, %f)", x, y, z);
+    }
+
+    public double get_x() {
+        return this.x;
+    }
+
+    public double get_y() {
+        return this.y;
+    }
+
+    public double get_z() {
+        return this.z;
     }
 }

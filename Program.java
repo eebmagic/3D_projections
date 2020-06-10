@@ -183,12 +183,27 @@ public class Program extends Application {
         }
     }
 
+    public static int count_nodes(Node start) {
+        HashSet<Node> counted_nodes = new HashSet<>();
+        count_help(start, counted_nodes);
+        return counted_nodes.size();
+    }
+
+    public static void count_help(Node curr, HashSet<Node> counted_nodes) {
+        counted_nodes.add(curr);
+        for (Node n : curr.get_connected()) {
+            if (!counted_nodes.contains(n)) {
+                count_help(n, counted_nodes);
+            }
+        }
+    }
+
 
     /** ============================================= **/
 
     final static int screen_width = 800;
     final static int screen_height = 600;
-    final static int node_size = 8;
+    final static int node_size = 4;
     
     final int max_angle = 1000;
     final int min_angle = 300;
@@ -222,6 +237,7 @@ public class Program extends Application {
         c.add_connection(k);
         k.add_connection(i);
         d.add_connection(b);
+        Node cube = a;
 
 
         // Nodes for triangle pyramid thing
@@ -235,7 +251,21 @@ public class Program extends Application {
         w.add_connection(v);
         w.add_connection(u);
         v.add_connection(u);
+        Node pyramid = z;
 
+
+        // Make tree object
+        Tree tree = new Tree(new CoordPair(0, screen_height * 0.4, 0), 180, 15, 60);
+        // object_rotate(t.get_head(), 0, 0, 25);   // turn tree at jaunty angle
+
+        int total_nodes = 0;
+        total_nodes += count_nodes(tree.get_head());
+        total_nodes += count_nodes(cube);
+        total_nodes += count_nodes(pyramid);
+        System.out.printf("   tree nodes: %d\n", count_nodes(tree.get_head()));
+        System.out.printf("   cube nodes: %d\n", count_nodes(cube));
+        System.out.printf("pyramid nodes: %d\n", count_nodes(pyramid));
+        System.out.printf("  Total nodes: %d\n", total_nodes);
 
         // setup screen
         Group root = new Group();
@@ -253,11 +283,14 @@ public class Program extends Application {
                 
                 // Main drawing loop
                 gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());  // clear screen
-                depth_draw(gc, a, angle);   // draw cube
-                depth_draw(gc, z, angle);   // draw pyramid
+                // depth_draw(gc, cube, angle);   // draw cube
+                // depth_draw(gc, pyramid, angle);   // draw pyramid
 
-                object_rotate(a, 0, 5, 1); // rotate cube
-                object_rotate(z, 1, 1, 1); // rotate pyramid
+                depth_draw(gc, tree.get_head(), angle);
+
+                // object_rotate(cube, 0, 5, 1); // rotate cube
+                // object_rotate(pyramid, 1, 1, 1); // rotate pyramid
+                object_rotate(tree.get_head(), 0, 1, 0); // rotate pyramid
                 
 
                 
