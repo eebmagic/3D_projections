@@ -255,8 +255,9 @@ public class Program extends Application {
 
 
         // Make tree object
-        Tree tree = new Tree(new CoordPair(0, screen_height * 0.4, 0), 180, 15, 60);
-        // object_rotate(t.get_head(), 0, 0, 25);   // turn tree at jaunty angle
+        CoordPair treeStart = new CoordPair(0, screen_height * 0.4, 0);
+        Tree tree = new Tree(treeStart, 180, 15, 45);
+        // object_rotate(tree.get_head(), 0, 0, 25);   // turn tree at jaunty angle
 
         int total_nodes = 0;
         total_nodes += count_nodes(tree.get_head());
