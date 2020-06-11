@@ -7,4 +7,6 @@ To run simply execute the bash script to compile and run the javafx program
 
 ## Sample
 (Demo video is low fps because of .gif file format)
-![Code Demo](dependancies/sample/sample.gif)
+![Cube/Pyramid Demo](dependancies/samples/cube_pyramid.gif)
+
+![Tree Demo](dependancies/samples/tree.gif)
