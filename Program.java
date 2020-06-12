@@ -256,7 +256,11 @@ public class Program extends Application {
 
         // Make tree object
         CoordPair treeStart = new CoordPair(0, screen_height * 0.4, 0);
-        Tree tree = new Tree(treeStart, 180, 15, 45);
+        int startSize = 180;
+        int minSize = 15;
+        int angleChange = 45;
+        double sizeAdjust = 0.60;   // NOTE: will lag if >= 0.75
+        Tree tree = new Tree(treeStart, startSize, minSize, angleChange, sizeAdjust);
         // object_rotate(tree.get_head(), 0, 0, 25);   // turn tree at jaunty angle
 
         int total_nodes = 0;
