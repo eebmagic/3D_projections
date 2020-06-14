@@ -11,12 +11,20 @@ public class Node {
      * @param y the y position
      * @param z the z position
      */
-    public Node(int x, int y, int z) {
+    public Node(double x, double y, double z) {
         this.pos = new CoordPair(x, y, z);
     }
 
-    public Node(double x, double y, double z) {
-        this.pos = new CoordPair(x, y, z);
+    public Node(int x, int y, int z) {
+        this((double)x, (double)y, (double)z);
+    }
+
+    public Node(double x, double y) {
+        this(x, y, 0);
+    }
+
+    public Node(int x, int y) {
+        this(x, y, 0);
     }
 
     /**
@@ -50,6 +58,10 @@ public class Node {
 
     public CoordPair get_pos() {
         return this.pos;
+    }
+
+    public double get_angle() {
+        return this.directionAngle;
     }
 
     public void set_pos(CoordPair newPos) {
